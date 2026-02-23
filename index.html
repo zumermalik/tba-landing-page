@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Knowledge Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel ="icon" type = "image/x-icon" a href="talk-bout-ai.png">
+    <style>
+        :root {
+            --bg: #000;
+            --white: #fff;
+            --accent: #ae86e5;
+            --cubic: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.1;
+        }
+
+        /* --- CORE ANIMATION CLASSES --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s var(--cubic), transform 1.2s var(--cubic);
+            will-change: transform, opacity;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Initial Landing Sequence Delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.5s; }
+        .delay-4 { transition-delay: 0.7s; }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5% 10%;
+            text-align: center;
+        }
+
+        /* --- SECTION 1: HERO --- */
+        .hero-link {
+            color: #777;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            display: block;
+            transition: color 0.3s;
+        }
+        .hero-link:hover { color: var(--white); }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 4.2rem);
+            font-weight: 800;
+            max-width: 900px;
+            letter-spacing: -2px;
+            margin-bottom: 3rem;
+        }
+
+        .card-container {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .card {
+            border-radius: 12px;
+            height: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        .card-white { background: var(--white); color: #000; flex: 1.2; }
+        .card-purple { background: var(--accent); color: var(--white); flex: 2; font-size: 1.1rem; padding: 0 20px;}
+        
+        .notion-logo {
+            width: 44px;
+            margin-bottom: 8px;
+        }
+
+        /* --- SECTION 2: COLLECTIVE --- */
+        .section-black-to-white {
+            background: var(--bg);
+            padding-bottom: 0;
+        }
+
+        .collective-text {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            max-width: 1000px;
+            margin-bottom: 100px;
+        }
+
+        .white-content-box {
+            background: var(--white);
+            width: 100vw;
+            color: #000;
+            padding: 80px 10%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .align-right-text {
+            align-self: flex-end;
+            font-size: 2.2rem;
+            font-weight: 800;
+            max-width: 450px;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        /* --- SECTION 3: TOOLS --- */
+        .tools-section {
+            background: var(--white);
+            color: #000;
+            padding-top: 0;
+        }
+
+        .shipping-text {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            max-width: 850px;
+            margin-bottom: 40px;
+        }
+
+        .quote-text {
+            font-style: italic;
+            font-size: 3rem;
+            font-family: serif;
+            margin-bottom: 40px;
+        }
+
+        .screenshot {
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 12px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+        }
+
+        /* --- SECTION 4: CTA --- */
+        .cta-section {
+            background: var(--white);
+        }
+
+        .black-box {
+            background: #000;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 20px;
+            padding: 80px 40px;
+            color: var(--white);
+        }
+
+        .cta-header {
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 40px;
+            line-height: 1.3;
+        }
+
+        .tune-in-btn {
+            background: var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            padding: 16px 60px;
+            border-radius: 50px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: inline-block;
+            transition: transform 0.3s var(--cubic);
+        }
+
+        .tune-in-btn:hover { transform: scale(1.05); }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .card-container { flex-direction: column; }
+            .card { height: 120px; }
+            .align-right-text { align-self: center; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section>
+        <a href="https://www.canva.com/design/DAHCLCDCt1Q/nT-adNesu0SKK2EhA6MXKA/view?utm_content=DAHCLCDCt1Q&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h315a4f29d8" target="_blank" class="hero-link reveal delay-1">the reason why we exist</a>
+        
+        <h1 class="reveal delay-2">This is your All in One AI knowledge hub with stuff to not go obsolete in AI age</h1>
+        
+        <div class="card-container">
+            <div class="card card-white reveal delay-3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" class="notion-logo" alt="Notion">
+                <span>templates</span>
+            </div>
+            <div class="card card-purple reveal delay-4">
+                community talk on<br>use cases of AI tools
+            </div>
+            <div class="card card-white reveal delay-1">
+                vibe<br>coded<br>stuff
+            </div>
+        </div>
+    </section>
+
+    <!-- COLLECTIVE SECTION -->
+    <section class="section-black-to-white">
+        <div class="collective-text reveal">
+            We are a collective of AI trend spotters, product-minded builders, and analysts.
+        </div>
+        
+        <div class="white-content-box">
+            <div class="align-right-text reveal">
+                making it easy to organize your AI related stuff
+            </div>
+            <img src="https://image2url.com/r2/default/images/1771881500924-ec5754e2-9be9-4b24-93ac-db84fed0f15e.png" alt="Signal Dashboard" class="screenshot reveal">
+        </div>
+    </section>
+
+    <!-- TOOLS SECTION -->
+    <section class="tools-section">
+        <div class="shipping-text reveal">
+            we are continuously shipping stuff leveraging the power of AI
+        </div>
+        <div class="quote-text reveal">“find me a tool”</div>
+        <img src="https://image2url.com/r2/default/images/1771881714673-50ce1a27-4e4a-43dd-ba36-798ef483440c.png" alt="Tool Matchmaker" class="screenshot reveal">
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="black-box reveal">
+            <div class="cta-header">
+                we will be coming soon with some of the coolest stuff and an AI community with hot takes on tools so...
+            </div>
+            <a href="https://www.linkedin.com/company/talkingai/" target="_blank" class="tune-in-btn">tune in</a>
+        </div>
+    </section>
+
+    <script>
+        /**
+         * Intersection Observer 
+         * Logic: Adds 'active' class when entering viewport.
+         * Logic: Removes 'active' class when exiting viewport to allow re-animation on scroll-up.
+         */
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    // This allows the animation to play again when scrolling back up
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // Trigger landing animations immediately for the hero
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('section:first-child .reveal').forEach(el => {
+                    el.classList.add('active');
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>
